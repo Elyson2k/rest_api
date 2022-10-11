@@ -37,16 +37,17 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> insert(@RequestBody User user){
-        User newObj = service.insert(user);
+    public ResponseEntity<UserDTO> insert(@RequestBody UserDTO user){
+        User newObj = service.downUser(user);
+        newObj = service.insert(newObj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Integer id,@RequestBody User user){
+    public ResponseEntity<UserDTO> update(@PathVariable Integer id,@RequestBody UserDTO user){
         User user1 = service.update(id,user);
-        UserDTO newObj = service.fromDTO(user1);
+        UserDTO newObj = service.upUser(user1);
         return ResponseEntity.status(HttpStatus.OK).body(newObj);
     }
 

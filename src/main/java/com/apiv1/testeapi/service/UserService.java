@@ -36,7 +36,7 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User update(Integer id, User user){
+    public User update(Integer id, UserDTO user){
         User obj = repository.getReferenceById(id);
         att(obj,user);
         return repository.save(obj);
@@ -53,7 +53,7 @@ public class UserService {
 
 
 
-    public void att(User inset, User obj){
+    public void att(User inset, UserDTO obj){
         inset.setName(obj.getName());
         inset.setEmail(obj.getEmail());
         inset.setPassword(obj.getPassword());
@@ -67,9 +67,12 @@ public class UserService {
 
     }
 
-    public UserDTO fromDTO(User user){
+    public UserDTO upUser(User user){
         return new UserDTO(user.getId(), user.getName(),user.getEmail(), user.getPassword());
     }
 
+    public User downUser(UserDTO user){
+        return new User(user.getId(), user.getName(), user.getEmail(), user.getPassword());
+    }
 
 }

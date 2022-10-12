@@ -34,8 +34,8 @@ class UserControllerTest {
     public static final UserDTO USER_DTO = new UserDTO(new User(1, "Cleitin", "cleitin@gmail.com", "123"));
     public static final Optional<User> OPTIONAL_USER = Optional.of(new User(1, "Elyson", "elyson@gmail.com", "123"));
 
-    private User user;
-    private UserDTO userDTO;
+    private User user = new User();
+    private UserDTO userDTO = new UserDTO();
     private List<UserDTO> listDto;
     private List<User> listUser;
     private Optional<User> optionalUser;

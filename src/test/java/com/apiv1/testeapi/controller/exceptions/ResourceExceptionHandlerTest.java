@@ -41,7 +41,7 @@ class ResourceExceptionHandlerTest {
 
     @Test
     void dtIntViolation() {
-        ResponseEntity<StandardError> response = exceptionHandler.dtIntViolation(new DataIntegrityViolationException("Error: Usuario não existe."), new MockHttpServletRequest());
+        ResponseEntity<StandardError> response = exceptionHandler.dtIntViolation(new DataIntegrityViolationException("Error: Email ja esta cadastrado!!"), new MockHttpServletRequest());
 
         assertNotNull(response);
         assertNotNull(response.getBody());
@@ -50,7 +50,7 @@ class ResourceExceptionHandlerTest {
         assertEquals(ResponseEntity.class, response.getClass());
         assertEquals(StandardError.class, response. getBody().getClass());
         assertEquals("Error: Email ja esta cadastrado!!", response.getBody().getError());
-        assertEquals(404, response.getBody().getStatus());
+        assertEquals(400, response.getBody().getStatus());
 
     }
 }

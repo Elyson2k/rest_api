@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping(value="/{id}")
     public ResponseEntity<UserDTO> findByID(@PathVariable Integer id){
         User user = service.find(id);
-        UserDTO newObj = service.fromDTO(user);
+        UserDTO newObj = service.upUser(user);
         return ResponseEntity.status(HttpStatus.OK).body(newObj);
     }
 
